@@ -164,7 +164,11 @@ function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
  */
 function getRottenTomatoesScoreByMovie(movies) {
   if(!movies.length) throw error
-  return movies.map(movie.title => movies.rating.find(rating) => rating.toLocaleLowerCase.source === "Rotten Tomatoes")
+  return movies.map(movie => {
+  let array = {}
+  array[movie.title] =  movie.ratings.find(rating => rating.source === "Rotten Tomatoes").value 
+  return array
+  })
 }
 
 // Do not change anything below this line.
