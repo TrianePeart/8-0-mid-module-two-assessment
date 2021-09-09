@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,11 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (!movies.length) throw "Error"
+  return movies.map(movie => movie.title)
+
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +55,10 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if(!movies.length)throw "Error"
+  return movies.some(movie => movie.rated ===rating)
+}
 
 /**
  * findById()
@@ -68,7 +76,11 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(!movies.length) throw "Error"
+  let ID = movies.find((movie) => movie.imdbID === id)
+  return (!ID) ? null: ID
+}
 
 /**
  * filterByGenre()
@@ -92,7 +104,10 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies,genre) {
+  if(!movies.length) throw "Error"
+  return movies.filter(movie => movie.genre.toLocaleLowerCase().includes(genre.toLocaleLowerCase()))
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +133,10 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if(!movies.length) throw "Error"
+  return movies.filter(movie => movie.released.slice(-5) <= year)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -144,7 +162,10 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length) throw error
+  return movies.map(movie.title => movies.rating.find(rating) => rating.toLocaleLowerCase.source === "Rotten Tomatoes")
+}
 
 // Do not change anything below this line.
 module.exports = {
